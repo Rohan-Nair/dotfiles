@@ -1,0 +1,35 @@
+unbind r 
+bind r source-file ~/.tmux.conf
+
+#setting default key to j 
+set -g prefix C-j 
+
+#setting vim keys to switch panes 
+setw -g mode-keys vi 
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+
+set -g status-position top
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#init tpm (always at bottom of conf) 
+run '~/.tmux/plugins/tpm/tpm' 
+
+
