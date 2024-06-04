@@ -1,0 +1,76 @@
+#binding r to reload tmux
+unbind r
+bind r source-file ~/.tmux.conf
+
+#setting default key to s
+set -g prefix C-s
+
+#setting vim keys to switch between panes
+setw -g mode-keys vi
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+
+#list of plugins
+set -g @plugin 'tmux-plugins/tpm'
+
+#split horizontal with $
+bind $ split-window -h
+#split vertical with #
+bind '#' split-window -v
+unbind '"'
+unbind %
+
+#allow mouse control
+set -g mouse on
+
+# DESIGN TWEAKS
+
+# don't do anything when a 'bell' rings
+set -g visual-activity off
+set -g visual-bell off
+set -g visual-silence off
+setw -g monitor-activity off
+set -g bell-action none
+
+# clock mode
+setw -g clock-mode-colour colour146
+
+# colour checker
+# colour146
+
+# copy mode
+setw -g mode-style 'fg=colour1 bg=colour8 bold'
+
+# pane borders
+set -g pane-border-style 'fg=colour1'
+set -g pane-active-border-style 'fg=colour3'
+
+# statusbar
+set -g status-position top
+set -g status-justify left
+set -g status-style 'fg=colour4'
+set -g status-left 'gwen '
+set -g status-right '%Y-%m-%d %H:%M '
+set -g status-right-length 50
+set -g status-left-length 10
+
+setw -g window-status-current-style 'fg=colour0 bg=colour4 bold'
+setw -g window-status-current-format ' #I #W #F '
+
+setw -g window-status-style 'fg=colour1 dim'
+setw -g window-status-format ' #I #[fg=colour7]#W #[fg=colour1]#F '
+
+setw -g window-status-bell-style 'fg=colour2 bg=colour1 bold'
+
+# messages
+set -g message-style 'fg=colour2 bg=colour0 bold'
+
+# set default shell as zsh
+set-option -g default-shell /bin/zsh
+
+#init tpm (always at bottom of conf)
+run '~/.tmux/plugins/tpm/tpm'
+
+
