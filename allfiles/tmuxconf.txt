@@ -1,0 +1,55 @@
+#binding r to reload tmux 
+unbind r 
+bind r source-file ~/.tmux.conf
+
+#setting default key to s 
+set -g prefix C-s 
+
+#setting vim keys to switch between panes
+setw -g mode-keys vi 
+bind-key h select-pane -L 
+bind-key j select-pane -D 
+bind-key k select-pane -U 
+bind-key l select-pane -R 
+
+#list of plugins 
+set -g @plugin 'tmux-plugins/tpm' 
+
+#split horizontal with $
+bind $ split-window -h 
+#split vertical with #
+bind '#' split-window -v 
+unbind '"'
+unbind %
+
+#allow mouse control 
+set -g mouse on 
+#-----------------------------
+#statusbar
+# move the status bar to the top 
+set -g status-position top 
+
+# move the status on the bar to the left
+set -g status-justify left 
+
+#show the date and time on the right on the bar
+set -g status-right '%Y-%m-%d %H:%M ' 
+
+#colour of the status bar 
+set -g status-style 'bg=color8 fg=colour5 bold'
+
+#test 
+setw -g window-status-current-style 'fg=colour5 bg=colour8 bold'
+setw -g window-status-current-format ' #I #W #F '
+set -g status-left ''
+
+#-----------------------------
+
+
+# set default shell as zsh 
+set-option -g default-shell /bin/zsh 
+
+#init tpm (always at bottom of conf)
+run '~/.tmux/plugins/tpm/tpm'
+
+#when want to get tmux back to initial then run 'tmux kill-server' in the terminal. 
